@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ACM.BL
 {
     public class Customer
     {
+        public static int InstanceCount { get; set; }
+
         private string _lastName;
 
         public string LastName
@@ -18,6 +21,21 @@ namespace ACM.BL
 
         public int CustomerId { get; private set; }
 
-        public string FullName => LastName + ", " + FirstName;
+        public string FullName
+        {
+            get
+            {
+                string fullName = LastName;
+                if (!string.IsNullOrEmpty(FirstName))
+                {
+                    if (!string.IsNullOrEmpty(fullName))
+                    {
+                        fullName += ", ";
+                    }
+                    fullName += FirstName;
+                }
+                return fullName;
+            }
+        }
     }
 }
